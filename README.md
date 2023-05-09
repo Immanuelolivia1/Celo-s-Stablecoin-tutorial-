@@ -144,6 +144,176 @@ Make sure to customize the contract name, token symbol, reserve ratio, and other
 **`Implementing the Stability Mechanism:`** Utilize the functionality provided by the Celo blockchain to implement the stability mechanism of your stablecoin. This may involve interacting with Celo's Oracle system to fetch real-time price information and adjusting the supply of your stablecoin accordingly.
 
 
+Here are some code samples that show how you can use the capabilities of the Celo blockchain to implement the stability mechanism in your stablecoin contract. These examples include connecting with Celo's Oracle system and modifying the token supply based on current pricing information.
+
+``
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import { AggregatorV3Interface } from "./AggregatorV3Interface.sol";
+
+contract MyStablecoin is ERC20 {
+    address private governance;
+    uint256 private reserveRatio;
+    AggregatorV3Interface private priceFeed;
+
+    constructor(address _priceFeedAddress) ERC20("My Stablecoin", "MYS") {
+        governance = msg.sender;
+        reserveRatio = 0.2; // Example reserve ratio, adjust as needed
+        priceFeed = AggregatorV3Interface(_priceFeedAddress);
+    }
+
+    modifier onlyGovernance() {
+        require(msg.sender == governance, "Only governance can call this function");
+        _;
+    }
+
+    function mint(address recipient, uint256 amount) external onlyGovernance {
+        _mint(recipient, amount);
+    }
+
+    function burn(uint256 amount) external {
+        _burn(msg.sender, amount);
+    }
+
+    function transfer(address recipient, uint256 amount) public override returns (bool) {
+        require(amount <= _calculateStability(amount), "Transfer amount exceeds stability limit");
+        return super.transfer(recipient, amount);
+    }
+
+    function transferFrom(
+        address sender,
+        address recipient,
+        uint256 amount
+    ) public override returns (bool) {
+        require(amount <= _calculateStability(amount), "Transfer amount exceeds stability limit");
+        return super.transferFrom(sender, recipient, amount);
+    }
+
+    function _calculateStability(uint256 amount) private view returns (uint256) {
+        uint256 totalSupply = totalSupply();
+        uint256 reserve = totalSupply * reserveRatio;
+        return totalSupply - reserve - amount;
+    }
+
+    function updatePriceFeedAddress(address _priceFeedAddress) external onlyGovernance {
+        priceFeed = AggregatorV3Interface(_priceFeedAddress);
+    }
+
+    function getLatestPrice() public view returns (uint256) {
+        (, int256 price, , , ) = priceFeed.latestRoundData();
+        require(price > 0, "Invalid price"); // Ensure the price is positive
+        return uint256(price);
+    }
+
+    function adjustSupply() external onlyGovernance {
+        uint256 currentPrice = getLatestPrice();
+        uint256 totalSupply = totalSupply();
+        uint256 reserve = totalSupply * reserveRatio;
+        uint256 targetSupply = reserve / currentPrice;
+        if (totalSupply > targetSupply) {
+            uint256 amountToBurn = totalSupply - targetSupply;
+            _burn(governance, amountToBurn);
+        } else if (totalSupply < targetSupply) {
+            uint256 amountToMint = targetSupply - totalSupply;
+            _mint(governance, amountToMint);
+        }
+    }
+}
+``
+In the above code snippet, we have made several updates to the previous stablecoin contract:
+
+- We import the **`AggregatorV3Interface`** from the **`AggregatorV3Interface.sol`** file, which provides an interface for interacting with Celo's Oracle system.
+
+- The constructor now takes an address parameter **`_priceFeedAddress`**, which represents the address of the Celo Oracle price feed.
+
+- The **`updatePriceFeedAddress`** function allows the governance address to update the price feed address if needed.
+
+- The **`getLatestPrice`** function retrieves the latest price from the Oracle system using the **`latestRoundData`** function provided by the **`AggregatorV3Interface`**. It ensures that the price is positive before returning it.
+
+- The **`adjustSupply`*** function is called by the governance address to adjust the stablecoin's supply based on the target reserve ratio. It fetches the current price from the Oracle system, calculates the target supply based on the reserve and the current price, and adjusts the supply accordingly. If the total supply is greater than the target supply, it burns the excess tokens. If the total supply is less than the target supply, it mints additional tokens.
+
+Please note that the code assumes the availability of the `AggregatorV3
+
+**Testing Your Contract:** To ensure the security and operation of your smart contract, it is essential to run a thorough test of it. You can create thorough test cases to verify your stablecoin's functionality in various scenarios using the strong testing framework offered by Hardhat.
+
+**Deploying to the Celo Blockchain:** Once your contract passes all tests, it's time to deploy it to the Celo blockchain. Hardhat provides deployment scripts that make it straightforward to deploy your contract to the Celo network. Ensure you have the necessary Celo account and network configurations in place.
+
+Here is an example of code that shows how to use Hardhat's deployment tools to publish your stablecoin contract to the Celo blockchain:
+``
+// deploy.js
+async function main() {
+  // Set up your Celo account and network configurations
+  const [deployer] = await ethers.getSigners();
+
+  console.log("Deploying contracts with the account:", deployer.address);
+
+  // Set up your contract deployment parameters
+  const stablecoinName = "My Stablecoin";
+  const stablecoinSymbol = "MYS";
+  const priceFeedAddress = "0x1234567890123456789012345678901234567890"; // Replace with actual Oracle price feed address
+
+  // Deploy your stablecoin contract
+  const Stablecoin = await ethers.getContractFactory("MyStablecoin");
+  const stablecoin = await Stablecoin.deploy(priceFeedAddress);
+
+  await stablecoin.deployed();
+
+  console.log("Stablecoin deployed to:", stablecoin.address);
+}
+
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+``
+The JavaScript deployment script in the code snippet above makes use of Hardhat to upload the stablecoin contract to the Celo network. The script is broken down as follows:
+
+- First, we set up the necessary configurations and obtain the deployer's Celo account using **`ethers.getSigners()`**.
+
+- Next, we define the parameters for the stablecoin contract deployment, including the name, symbol, and the address of the Oracle price feed.
+
+- We then use **`ethers.getContractFactory()`** to obtain the contract factory for the stablecoin contract.
+
+- After that, we deploy the stablecoin contract using **`stablecoin.deploy(priceFeedAddress)`**. This deploys the contract with the provided price feed address as a constructor parameter.
+
+- Finally, we log the deployed contract's address to the console.
+
+To deploy the contract, you can run this script using Hardhat's deployment command, such as **`npx hardhat run deploy.js --network celo`**. Ensure that you have the necessary network configurations in the Hardhat configuration file, such as the RPC URL and the private key of the deployer account.
+
+Please note that the code snippet assumes you have a valid Oracle price feed address and that you've replaced the placeholder address **(`0x1234567890123456789012345678901234567890`)** with the actual address of the Oracle price feed.
+
+**Interacting with Your Stablecoin:** Using a variety of wallets and programs that are compatible with Celo, you can now interact with your stablecoin after it has been deployed. To guarantee seamless use, test transactions, transfers, and other features.
+
+You may create a strong and dependable stablecoin on the Celo blockchain by following these instructions and utilizing the abilities of Hardhat and Solidity. To give people confidence in the integrity of your stablecoin, don't forget to do extensive testing, establish appropriate security measures, and request external audits if necessary.
+
+
+## Conclusion
+In conclusion, the Celo Dollar (cUSD) stands as an impressive stablecoin built on the Celo blockchain, promoting financial accessibility and stability. Understanding its stability mechanism and advantages helps shed light on its potential impact on the world of decentralized finance. Furthermore, with the guidance provided on writing a smart contract using Hardhat and Solidity, you now have the tools to embark on your own stablecoin creation journey on the Celo blockchain.
+
+Harness the power of cUSD and explore the possibilities of stablecoin innovation on the Celo network. By adhering to best practices, conducting thorough testing, and building on the robust infrastructure provided by Celo and Hardhat, you can contribute to the exciting and rapidly evolving world of decentralized finance.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
