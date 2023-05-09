@@ -111,7 +111,7 @@ contract MyStablecoin is ERC20 {
 
     constructor() ERC20("My Stablecoin", "MYS") {
         governance = msg.sender;
-        reserveRatio = 2000; // Example reserve ratio, adjust as needed
+        reserveRatio = 0.2; // Example reserve ratio, adjust as needed
     }
 
     modifier onlyGovernance() {
@@ -143,7 +143,7 @@ contract MyStablecoin is ERC20 {
 
     function _calculateStability(uint256 amount) private view returns (uint256) {
         uint256 totalSupply = totalSupply();
-        uint256 reserve = (totalSupply * reserveRatio) / 10000; // adjust to decimal percentage
+        uint256 reserve = totalSupply * reserveRatio;
         return totalSupply - reserve - amount;
     }
 }
