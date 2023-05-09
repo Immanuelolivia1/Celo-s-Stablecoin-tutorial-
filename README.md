@@ -70,6 +70,7 @@ You will need to build a smart contract utilizing the well-known development fra
 
 #### Create a new directory for your project
 ``mkdir my-stablecoin-project``
+
 ``cd my-stablecoin-project``
 
 #### Initialize the project with Hardhat
@@ -146,8 +147,7 @@ Make sure to customize the contract name, token symbol, reserve ratio, and other
 
 Here are some code samples that show how you can use the capabilities of the Celo blockchain to implement the stability mechanism in your stablecoin contract. These examples include connecting with Celo's Oracle system and modifying the token supply based on current pricing information.
 
-``
-// SPDX-License-Identifier: MIT
+``// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -220,8 +220,8 @@ contract MyStablecoin is ERC20 {
             _mint(governance, amountToMint);
         }
     }
-}
-``
+}``
+
 In the above code snippet, we have made several updates to the previous stablecoin contract:
 
 - We import the **`AggregatorV3Interface`** from the **`AggregatorV3Interface.sol`** file, which provides an interface for interacting with Celo's Oracle system.
@@ -241,8 +241,8 @@ Please note that the code assumes the availability of the `AggregatorV3
 **Deploying to the Celo Blockchain:** Once your contract passes all tests, it's time to deploy it to the Celo blockchain. Hardhat provides deployment scripts that make it straightforward to deploy your contract to the Celo network. Ensure you have the necessary Celo account and network configurations in place.
 
 Here is an example of code that shows how to use Hardhat's deployment tools to publish your stablecoin contract to the Celo blockchain:
-``
-// deploy.js
+
+``// deploy.js
 async function main() {
   // Set up your Celo account and network configurations
   const [deployer] = await ethers.getSigners();
@@ -268,8 +268,9 @@ main()
   .catch((error) => {
     console.error(error);
     process.exit(1);
-  });
-``
+  });``
+  
+  
 The JavaScript deployment script in the code snippet above makes use of Hardhat to upload the stablecoin contract to the Celo network. The script is broken down as follows:
 
 - First, we set up the necessary configurations and obtain the deployer's Celo account using **`ethers.getSigners()`**.
