@@ -83,7 +83,8 @@ Please note that you may need to customize the project configuration and install
 
 **Defining the Stablecoin Contract:** Within your project directory, create a new Solidity file for your stablecoin contract. Define the necessary variables and functions to handle the token's supply, transfers, and stability mechanisms. Consider incorporating the Celo Stability Protocol into your contract design.
 
-``// SPDX-License-Identifier: MIT
+```
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -129,7 +130,8 @@ contract MyStablecoin is ERC20 {
         uint256 reserve = totalSupply * reserveRatio;
         return totalSupply - reserve - amount;
     }
-}``
+}
+```
 
 In the above code snippet, we define a **`MyStablecoin`** contract that extends the **`ERC20`** contract from the OpenZeppelin library. The contract initializes with a governance address and a reserve ratio, which represents the portion of the total supply reserved to maintain stability.
 
