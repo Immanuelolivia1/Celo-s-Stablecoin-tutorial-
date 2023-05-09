@@ -10,12 +10,12 @@ This article dives into the Celo Dollar (cUSD), a stablecoin built on the Celo b
   - [Advantages of cUSD: Promoting Financial Accessibility](#advantages-of-cUSD-promoting-financial-accessibility)
   - [Building a Stablecoin on the Celo Blockchain](#building-a-stablecoin-on-the-celo-blockchain)
   - [Writing a Smart Contract with Hardhat and Solidity](#writing-a-smart-contract-with-hardhat-and-solidity)
-    -[Setting Up Your Development Environment](#setting-up-your-development-environment)
-    -[Defining the Stablecoin Contract](#defining-the-stablecoin-contract)
-    -[Implementing the Stability Mechanism](#implementing-the-stability-mechanism)
-    -[Testing Your Contract](#testing-your-contract)
-    -[Deploying to the Celo Blockchain](#deploying-to-the-celo-blockchain)
-    -[Interacting with Your Stablecoin](#interacting-with-your-stablecoin)
+    - [Setting Up Your Development Environment](#setting-up-your-development-environment)
+    - [Defining the Stablecoin Contract](#defining-the-stablecoin-contract)
+    - [Implementing the Stability Mechanism](#implementing-the-stability-mechanism)
+    - [Testing Your Contract](#testing-your-contract)
+    - [Deploying to the Celo Blockchain](#deploying-to-the-celo-blockchain)
+    - [Interacting with Your Stablecoin](#interacting-with-your-stablecoin)
   - [Conclusion](#conclusion)
 
 ## Abstract
