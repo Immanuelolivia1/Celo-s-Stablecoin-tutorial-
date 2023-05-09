@@ -65,15 +65,15 @@ You will need to build a smart contract utilizing the well-known development fra
 
 **Setting Up Your Development Environment:** Start by installing Hardhat, a powerful tool for Ethereum and Celo development. Once installed, create a new directory for your project and initialize it with Hardhat.
 
-``# Install Hardhat globally
-npm install -g hardhat
+#### Install Hardhat globally
+``npm install -g hardhat``
 
-# Create a new directory for your project
-mkdir my-stablecoin-project
-cd my-stablecoin-project
+#### Create a new directory for your project
+``mkdir my-stablecoin-project``
+``cd my-stablecoin-project``
 
-# Initialize the project with Hardhat
-npx hardhat init
+#### Initialize the project with Hardhat
+``npx hardhat init
 ``
 
 The above code snippet assumes you have Node.js and npm (Node Package Manager) installed on your machine. By following these steps, you will have Hardhat installed globally and a new directory created for your stablecoin project. The **`npx hardhat init`** command initializes the project with the necessary configuration files and folder structure provided by Hardhat, allowing you to start developing and deploying your smart contracts on the Celo blockchain.
