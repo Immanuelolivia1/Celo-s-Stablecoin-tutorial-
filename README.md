@@ -3,13 +3,13 @@ This article dives into the Celo Dollar (cUSD), a stablecoin built on the Celo b
 
 ### Table of Contents:
 
-- Abstract
-- Introduction
-- Understanding the Celo Dollar (cUSD)
-- How cUSD Works: Exploring the Stability Mechanism
-- Advantages of cUSD: Promoting Financial Accessibility
-- Building a Stablecoin on the Celo Blockchain: Writing a Smart Contract with Hardhat and Solidity
-- Conclusion
+- [Abstract](#abstract)
+- [Introduction](#introduction)
+- [Understanding the Celo Dollar](#understanding-the-celo-dollar)
+- [How cUSD Works: Exploring the Stability Mechanism](#how-cusd-works-exploring-the-stability-mechanism)
+- [Advantages of cUSD: Promoting Financial Accessibility](#advantages-of-the-celo-dollar)
+- [Building a Stablecoin on the Celo Blockchain: Writing a Smart Contract with Hardhat and Solidity](#building-a-stablecoin-on-the-celo-blockchain)
+- [Conclusion](#conclusion)
 
 ## Abstract
 
@@ -22,7 +22,7 @@ Cryptocurrencies have skyrocketed in popularity in recent years, completely alte
 
 The reader will gain a thorough grasp of the Celo Dollar (cUSD) stablecoin after reading this essay. We'll delve into its stability mechanism, examine its basic principles, and highlight its benefits for fostering financial accessibility. Additionally, i will walk you through creating a stablecoin and deploying it on the Celo blockchain using a smart contract written in Hardhat and Solidity.
 
-## Understanding the Celo Dollar (cUSD)
+## Understanding the Celo Dollar
 
 Understanding the underlying idea of this stablecoin is essential before going into its technical details. A digital version of fiat money (like the US Dollar) with a steady value is called the Celo Dollar (cUSD). Contrary to volatile cryptocurrencies, the cUSD tries to offer stability by utilizing a number of methods to guarantee that its value stays largely consistent.
 
@@ -89,42 +89,107 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract MyStablecoin is ERC20 {
-    address private governance;
-    uint256 private reserveRatio;
+/**
+ * @title MyStablecoin
+ * @dev A stablecoin based on ERC20 standard with adjustable reserve ratio.
+ */
 
+contract MyStablecoin is ERC20 {
+    /**
+    * @dev The address of the governance account, which is the only account allowed to call certain functions
+    */
+    address private governance;
+    /**
+    * @dev The reserve ratio of the stablecoin, expressed as a percentage of the total supply
+    */
+    uint256 private reserveRatio;
+    /**
+     * @dev Sets the initial governance and reserve ratio values.
+     */
     constructor() ERC20("My Stablecoin", "MYS") {
         governance = msg.sender;
         reserveRatio = 2000; // Example reserve ratio, adjust as needed
     }
 
+    /**
+     * @dev Modifier that only allows governance to call the function.
+     */
     modifier onlyGovernance() {
         require(msg.sender == governance, "Only governance can call this function");
         _;
     }
 
+    // Event emitted when new tokens are minted
+    event Mint(address indexed recipient, uint256 amount);
+    // Event emitted when tokens are burned
+    event Burn(uint256 amount);
+    // Event emitted when tokens are transferred and considered stable
+    event TransferStable(address indexed sender, address indexed recipient, uint256 amount);
+
+    /**
+     * @dev Mints new tokens and sends them to the specified recipient.
+     * @param recipient The address that will receive the new tokens.
+     * @param amount The amount of tokens to mint.
+     */
     function mint(address recipient, uint256 amount) external onlyGovernance {
+        require(recipient != address(0), "Invalid recipient address");
+        require(amount > 0, "Invalid amount");
         _mint(recipient, amount);
+        emit Mint(recipient, amount);
     }
 
+    /**
+     * @dev Burns the specified amount of tokens from the caller's balance.
+     * @param amount The amount of tokens to burn.
+     */
     function burn(uint256 amount) external {
+        require(amount > 0, "Invalid amount");
         _burn(msg.sender, amount);
+        emit Burn(amount);
     }
 
+    /**
+     * @dev Transfers tokens to the specified recipient, checking the stability limit.
+     * @param recipient The address that will receive the tokens.
+     * @param amount The amount of tokens to transfer.
+     */
     function transfer(address recipient, uint256 amount) public override returns (bool) {
+        require(recipient != address(0), "Invalid recipient address");
+        require(amount > 0, "Invalid amount");
         require(amount <= _calculateStability(amount), "Transfer amount exceeds stability limit");
-        return super.transfer(recipient, amount);
+        bool result = super.transfer(recipient, amount);
+        if (result) {
+            emit TransferStable(msg.sender, recipient, amount);
+        }
+        return result;
     }
 
+     /**
+     * @dev Transfers tokens from one address to another, checking the stability limit.
+     * @param sender The address from which to transfer the tokens.
+     * @param recipient The address that will receive the tokens.
+     * @param amount The amount of tokens to transfer.
+     */
     function transferFrom(
         address sender,
         address recipient,
         uint256 amount
     ) public override returns (bool) {
+        require(sender != address(0), "Invalid sender address");
+        require(recipient != address(0), "Invalid recipient address");
+        require(amount > 0, "Invalid amount");
         require(amount <= _calculateStability(amount), "Transfer amount exceeds stability limit");
-        return super.transferFrom(sender, recipient, amount);
+        bool result = super.transferFrom(sender, recipient, amount);
+        if (result) {
+            emit TransferStable(sender, recipient, amount);
+        }
+        return result;
     }
 
+    /**
+     * @dev Calculates the stability amount based on the current total supply and reserve ratio.
+     * @param amount The amount of tokens to subtract from the total supply.
+     */
     function _calculateStability(uint256 amount) private view returns (uint256) {
         uint256 totalSupply = totalSupply();
         uint256 reserve = (totalSupply * reserveRatio) / 10000; // adjust to decimal percentage
