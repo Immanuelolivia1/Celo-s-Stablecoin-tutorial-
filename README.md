@@ -1,20 +1,26 @@
-# Celo-s-Stablecoin-tutorial-
+# Celo-Stablecoin-tutorial
 This article dives into the Celo Dollar (cUSD), a stablecoin built on the Celo blockchain. It explains how cUSD works, its stability mechanism, and its advantages in promoting financial accessibility, and lastly, it explains how to write a smart contract using hardhat and solidity to build a stable coin and deploy it on the Celo blockchain.
 
-### Table of Contents:
-
-- Abstract
-- Introduction
-- Understanding the Celo Dollar (cUSD)
-- How cUSD Works: Exploring the Stability Mechanism
-- Advantages of cUSD: Promoting Financial Accessibility
-- Building a Stablecoin on the Celo Blockchain: Writing a Smart Contract with Hardhat and Solidity
-- Conclusion
+## Table of Contents
+- [Celo-Stablecoin-tutorial](#Celo-Stablecoin-tutorial)
+  - [Abstract](#abstract)
+  - [Introduction](#introduction)
+  - [Understanding the Celo Dollar (cUSD)](#Understanding-the-Celo-Dollar-(cUSD))
+  - [How cUSD Works: Exploring the Stability Mechanism](#how-cUSD-works-exploring-the-stability-mechanism)
+  - [Advantages of cUSD: Promoting Financial Accessibility](#Advantages-of-cUSD-Promoting-Financial-Accessibility)
+  - [Building a Stablecoin on the Celo Blockchain](#Building-a-Stablecoin-on-the-Celo-Blockchain)
+  - [Writing a Smart Contract with Hardhat and Solidity](#-Writing-a-Smart-Contract-with-Hardhat-and-Solidity)
+     -[Setting Up Your Development Environment](#Setting-Up-Your-Development-Environment)
+     -[Defining the Stablecoin Contract](#Defining-the-Stablecoin-Contract)
+     -[Implementing the Stability Mechanism](#Implementing-the-Stability-Mechanism)
+     -[Testing Your Contract](#Testing-Your-Contract)
+     -[Deploying to the Celo Blockchain](#Deploying-to-the-Celo-Blockchain)
+     -[Interacting with Your Stablecoin](#Interacting-with-Your-Stablecoin)
+  - [Conclusion](#conclusion)
 
 ## Abstract
 
 This article delves into the world of Celo Dollar (cUSD), a stablecoin built on the Celo blockchain. By providing a comprehensive overview, aiming to equip readers with a deep understanding of cUSD's functionality, stability mechanism, and the advantages it offers in promoting financial accessibility. Additionally, exploring  the process of writing a smart contract using Hardhat and Solidity to build a stablecoin and deploy it on the Celo blockchain. Join me on this journey as i uncover the intricacies of cUSD and its significance in the evolving landscape of digital currencies.
-
 
 ## Introduction
 
@@ -40,50 +46,60 @@ Governance mechanisms are another crucial element in the stability protocol of c
 
 The Celo Dollar has a number of benefits that help it gain popularity and adoption:
 
-Accessibility: The capacity of the cUSD to encourage financial accessibility is one of its key benefits. People without access to banking services or those who experience economic volatility are frequently left out of traditional financial institutions. This gap is filled by the Celo Dollar (cUSD), which offers a reliable and easily accessible medium of exchange. Users may transact seamlessly and securely thanks to its digital nature, regardless of their location or financial situation. By utilizing the infrastructure of the Celo blockchain, cUSD enables anyone to take part in international economic operations, promoting financial inclusiveness and empowerment.
+- Accessibility: The capacity of the cUSD to encourage financial accessibility is one of its key benefits. People without access to banking services or those who experience economic volatility are frequently left out of traditional financial institutions. This gap is filled by the Celo Dollar (cUSD), which offers a reliable and easily accessible medium of exchange. Users may transact seamlessly and securely thanks to its digital nature, regardless of their location or financial situation. By utilizing the infrastructure of the Celo blockchain, cUSD enables anyone to take part in international economic operations, promoting financial inclusiveness and empowerment.
 
 Moreover, cUSD opens up opportunities for individuals in regions with volatile or underperforming national currencies. By utilizing cUSD, they can mitigate the risks associated with currency fluctuations and maintain a stable store of value. This stability creates a conducive environment for commerce, savings, and investments, enabling economic growth and prosperity.
 
-Security and transparency: Built on a blockchain, cUSD transactions profit from the security and transparency that come standard with distributed ledger technology. Users benefit from the ease of a reliable medium of exchange while maintaining confidence in the integrity of their transactions.
+- Security and transparency: Built on a blockchain, cUSD transactions profit from the security and transparency that come standard with distributed ledger technology. Users benefit from the ease of a reliable medium of exchange while maintaining confidence in the integrity of their transactions.
 
-Low Transaction Fees: The Celo network boasts low transaction fees, making cUSD an attractive option for microtransactions and everyday purchases. Whether you're sending money to a friend or making a purchase, the cost-efficiency of cUSD makes it a practical choice.
+- Low Transaction Fees: The Celo network boasts low transaction fees, making cUSD an attractive option for microtransactions and everyday purchases. Whether you're sending money to a friend or making a purchase, the cost-efficiency of cUSD makes it a practical choice.
 
 ## Building a Stablecoin on the Celo Blockchain
 For those interested in creating their own stablecoin on the Celo blockchain, understanding the process of writing a smart contract is crucial. Hardhat and Solidity are powerful tools that facilitate the development of smart contracts and their deployment on the Celo blockchain.
+<br/>
 
 To begin, you will need to set up your development environment with Hardhat. Hardhat is a popular development framework that simplifies the process of writing, testing, and deploying smart contracts. It provides a comprehensive suite of tools and utilities that aid in the smooth development process.
+<br/>
 
 Next, you will write your smart contract using Solidity, a high-level programming language specifically designed for creating smart contracts. Solidity enables you to define the rules and functionalities of your stablecoin, including its stability mechanisms, token supply, and governance structure. By leveraging Solidity's capabilities, you can customize your stablecoin to meet your specific requirements.
+<br/>
 
 Once your smart contract is written, you can use Hardhat to compile and deploy it onto the Celo blockchain. Hardhat streamlines the deployment process by providing easy-to-use commands and integration with Celo's infrastructure. Through this process, your stablecoin will become a part of the Celo ecosystem, ready to empower users with stability and financial accessibility.
+<br/>
 
 By following these steps and leveraging the capabilities of Hardhat and Solidity, you can build a powerful and reliable stablecoin on the Celo blockchain. Remember to conduct thorough testing, ensure proper security measures, and seek external audits if necessary to provide confidence in your stablecoin's integrity.
 
-### Writing a Smart Contract with Hardhat and Solidity
+## Writing a Smart Contract with Hardhat and Solidity
 
 You will need to build a smart contract utilizing the well-known development framework Hardhat and the programming language Solidity to start creating your stablecoin on the Celo network. The essential steps are as follows:
 
-**Setting Up Your Development Environment:** Start by installing Hardhat, a powerful tool for Ethereum and Celo development. Once installed, create a new directory for your project and initialize it with Hardhat.
+### Setting Up Your Development Environment 
+<br/>
 
-#### Install Hardhat globally
+Start by installing Hardhat, a powerful tool for Ethereum and Celo development. Once installed, create a new directory for your project and initialize it with Hardhat.
+
+1. Install Hardhat globally
 ``npm install -g hardhat``
 
-#### Create a new directory for your project
-``mkdir my-stablecoin-project``
 
-``cd my-stablecoin-project``
+2. Create a new directory for your project
+```mkdir my-stablecoin-project```
 
-#### Initialize the project with Hardhat
-``npx hardhat init
-``
+```cd my-stablecoin-project```
 
-The above code snippet assumes you have Node.js and npm (Node Package Manager) installed on your machine. By following these steps, you will have Hardhat installed globally and a new directory created for your stablecoin project. The **`npx hardhat init`** command initializes the project with the necessary configuration files and folder structure provided by Hardhat, allowing you to start developing and deploying your smart contracts on the Celo blockchain.
+3. Initialize the project with Hardhat
+```npx hardhat init
+```
+
+The above code snippet assumes you have Node.js and npm (Node Package Manager) installed on your machine. By following these steps, you will have Hardhat installed globally and a new directory created for your stablecoin project. The **```npx hardhat init```** command initializes the project with the necessary configuration files and folder structure provided by Hardhat, allowing you to start developing and deploying your smart contracts on the Celo blockchain.
+<br/>
 
 Please note that you may need to customize the project configuration and install additional dependencies based on your specific requirements. Make sure to refer to the Hardhat documentation for further guidance on configuring and extending your project.
 
-**Defining the Stablecoin Contract:** Within your project directory, create a new Solidity file for your stablecoin contract. Define the necessary variables and functions to handle the token's supply, transfers, and stability mechanisms. Consider incorporating the Celo Stability Protocol into your contract design.
+### Defining the Stablecoin Contract
+Within your project directory, create a new Solidity file for your stablecoin contract. Define the necessary variables and functions to handle the token's supply, transfers, and stability mechanisms. Consider incorporating the Celo Stability Protocol into your contract design.
 
-```
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -144,12 +160,13 @@ The **`_calculateStability`** internal function calculates the maximum transfera
 Make sure to customize the contract name, token symbol, reserve ratio, and other aspects based on your specific requirements.
 
 
-**`Implementing the Stability Mechanism:`** Utilize the functionality provided by the Celo blockchain to implement the stability mechanism of your stablecoin. This may involve interacting with Celo's Oracle system to fetch real-time price information and adjusting the supply of your stablecoin accordingly.
-
+### Implementing the Stability Mechanism
+Utilize the functionality provided by the Celo blockchain to implement the stability mechanism of your stablecoin. This may involve interacting with Celo's Oracle system to fetch real-time price information and adjusting the supply of your stablecoin accordingly.
+<br/>
 
 Here are some code samples that show how you can use the capabilities of the Celo blockchain to implement the stability mechanism in your stablecoin contract. These examples include connecting with Celo's Oracle system and modifying the token supply based on current pricing information.
 
-```
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -238,15 +255,17 @@ In the above code snippet, we have made several updates to the previous stableco
 
 - The **`adjustSupply`*** function is called by the governance address to adjust the stablecoin's supply based on the target reserve ratio. It fetches the current price from the Oracle system, calculates the target supply based on the reserve and the current price, and adjusts the supply accordingly. If the total supply is greater than the target supply, it burns the excess tokens. If the total supply is less than the target supply, it mints additional tokens.
 
-Please note that the code assumes the availability of the `AggregatorV3
+Please note that the code assumes the availability of the AggregatorV3
 
-**Testing Your Contract:** To ensure the security and operation of your smart contract, it is essential to run a thorough test of it. You can create thorough test cases to verify your stablecoin's functionality in various scenarios using the strong testing framework offered by Hardhat.
+### Testing Your Contract
+To ensure the security and operation of your smart contract, it is essential to run a thorough test of it. You can create thorough test cases to verify your stablecoin's functionality in various scenarios using the strong testing framework offered by Hardhat.
 
-**Deploying to the Celo Blockchain:** Once your contract passes all tests, it's time to deploy it to the Celo blockchain. Hardhat provides deployment scripts that make it straightforward to deploy your contract to the Celo network. Ensure you have the necessary Celo account and network configurations in place.
+### Deploying to the Celo Blockchain
+Once your contract passes all tests, it's time to deploy it to the Celo blockchain. Hardhat provides deployment scripts that make it straightforward to deploy your contract to the Celo network. Ensure you have the necessary Celo account and network configurations in place.
 
 Here is an example of code that shows how to use Hardhat's deployment tools to publish your stablecoin contract to the Celo blockchain:
 
-```
+```javascript
 // deploy.js
 async function main() {
   // Set up your Celo account and network configurations
@@ -293,7 +312,8 @@ To deploy the contract, you can run this script using Hardhat's deployment comma
 
 Please note that the code snippet assumes you have a valid Oracle price feed address and that you've replaced the placeholder address **(`0x1234567890123456789012345678901234567890`)** with the actual address of the Oracle price feed.
 
-**Interacting with Your Stablecoin:** Using a variety of wallets and programs that are compatible with Celo, you can now interact with your stablecoin after it has been deployed. To guarantee seamless use, test transactions, transfers, and other features.
+### Interacting with Your Stablecoin
+Using a variety of wallets and programs that are compatible with Celo, you can now interact with your stablecoin after it has been deployed. To guarantee seamless use, test transactions, transfers, and other features.
 
 You may create a strong and dependable stablecoin on the Celo blockchain by following these instructions and utilizing the abilities of Hardhat and Solidity. To give people confidence in the integrity of your stablecoin, don't forget to do extensive testing, establish appropriate security measures, and request external audits if necessary.
 
