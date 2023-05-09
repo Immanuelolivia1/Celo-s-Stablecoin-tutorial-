@@ -1,13 +1,16 @@
-# Celo-Stablecoin-tutorial
-This article dives into the Celo Dollar (cUSD), a stablecoin built on the Celo blockchain. It explains how cUSD works, its stability mechanism, and its advantages in promoting financial accessibility, and lastly, it explains how to write a smart contract using hardhat and solidity to build a stable coin and deploy it on the Celo blockchain.
+# The Celo Stablecoin Tutorial
+This article dives into the Celo Dollar (cUSD), a stablecoin built on the Celo blockchain. It explains how cUSD works, its stability mechanism, and its advantages in promoting financial accessibility, and lastly, it explains how to write a smart contract using Hardhat and Solidity to build a stablecoin and deploy it on the Celo blockchain.
 
 ## Table of Contents
-- [Celo-Stablecoin-tutorial](#Celo-Stablecoin-tutorial)
+- [The Celo Stablecoin Tutorial](#the-celo-stablecoin-tutorial)
+  - [Table of Contents](#table-of-contents)
   - [Abstract](#abstract)
   - [Introduction](#introduction)
-  - [Understanding the Celo Dollar (cUSD)](#Understanding-the-Celo-Dollar-(cUSD))
-  - [How cUSD Works: Exploring the Stability Mechanism](#how-cUSD-works-exploring-the-stability-mechanism)
-  - [Advantages of cUSD: Promoting Financial Accessibility](#advantages-of-cUSD-promoting-financial-accessibility)
+  - [Pre-requisites](#pre-requisites)
+  - [Requirements](#requirements)
+  - [Understanding the Celo Dollar (cUSD)](#understanding-the-celo-dollar-cusd)
+  - [How cUSD Works: Exploring the Stability Mechanism](#how-cusd-works-exploring-the-stability-mechanism)
+  - [Advantages of the Celo Dollar](#advantages-of-the-celo-dollar)
   - [Building a Stablecoin on the Celo Blockchain](#building-a-stablecoin-on-the-celo-blockchain)
   - [Writing a Smart Contract with Hardhat and Solidity](#writing-a-smart-contract-with-hardhat-and-solidity)
     - [Setting Up Your Development Environment](#setting-up-your-development-environment)
@@ -20,13 +23,33 @@ This article dives into the Celo Dollar (cUSD), a stablecoin built on the Celo b
 
 ## Abstract
 
-This article delves into the world of Celo Dollar (cUSD), a stablecoin built on the Celo blockchain. By providing a comprehensive overview, aiming to equip readers with a deep understanding of cUSD's functionality, stability mechanism, and the advantages it offers in promoting financial accessibility. Additionally, exploring  the process of writing a smart contract using Hardhat and Solidity to build a stablecoin and deploy it on the Celo blockchain. Join me on this journey as i uncover the intricacies of cUSD and its significance in the evolving landscape of digital currencies.
+This article delves into the world of the Celo Dollar (cUSD), a stablecoin built on the Celo blockchain. By providing a comprehensive overview, aiming to equip readers with a deep understanding of cUSD's functionality, stability mechanism, and the advantages it offers in promoting financial accessibility. Additionally, exploring the process of writing a smart contract using Hardhat and Solidity to build a stablecoin and deploy it on the Celo blockchain. Join me on this journey as I uncover the intricacies of cUSD and its significance in the evolving landscape of digital currencies.
 
 ## Introduction
 
 Cryptocurrencies have skyrocketed in popularity in recent years, completely altering how we see and use established financial institutions. Stablecoins are a dependable way to deal with the volatility that many cryptocurrencies face among the wide range of digital currencies. The Celo Dollar (cUSD), a stablecoin that runs on the Celo blockchain, is one example.
 
-The reader will gain a thorough grasp of the Celo Dollar (cUSD) stablecoin after reading this essay. We'll delve into its stability mechanism, examine its basic principles, and highlight its benefits for fostering financial accessibility. Additionally, i will walk you through creating a stablecoin and deploying it on the Celo blockchain using a smart contract written in Hardhat and Solidity.
+The reader will gain a thorough grasp of the Celo Dollar (cUSD) stablecoin after reading this article. We'll delve into its stability mechanism, examine its basic principles, and highlight its benefits for fostering financial accessibility. Additionally, I will walk you through creating a stablecoin and deploying it on the Celo blockchain using a smart contract written in Hardhat and Solidity.
+
+
+## Pre-requisites
+
+To be able to follow this tutorial, you'll need to have a basic understanding of:
+
+- Solidity
+- JavaScript
+- [Basis points](https://www.investopedia.com/terms/b/basispoint.asp)
+- The [ERC-20](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/) token standard
+- [The Chainlink data feeds](https://docs.chain.link/data-feeds#:~:text=Chainlink%20Data%20Feeds%20are%20the,prices%2C%20and%20L2%20sequencer%20health.)
+- Finance concepts such as [Collateralization](https://www.investopedia.com/terms/c/collateralization.asp)
+- Blockchain concepts such as [Algorithmic stablecoins](https://cointelegraph.com/learn/stablecoins-101-what-are-crypto-stablecoins-and-how-do-they-work)
+
+## Requirements
+
+- [Node.js](https://nodejs.org/en) and npm installed
+- A code editor
+- The Remix IDE
+- A funded account with CELO tokens
 
 ## Understanding the Celo Dollar (cUSD)
 
@@ -34,7 +57,7 @@ Understanding the underlying idea of this stablecoin is essential before going i
 
 ## How cUSD Works: Exploring the Stability Mechanism
 
-The stability of cUSD is achieved through a mechanism known as a stability protocol. This protocol relies on various elements, including collateralization, algorithmic adjustments, and governance mechanisms. By understanding the intricacies of these components, we can gain insight into how cUSD maintains its stable value in the face of market fluctuations.
+The stability of cUSD is achieved through a mechanism known as a [stability protocol](https://blog.celo.org/diving-into-the-celo-price-stability-protocol-d7afd210609e). This protocol relies on various elements, including collateralization, algorithmic adjustments, and governance mechanisms. By understanding the intricacies of these components, we can gain insight into how cUSD maintains its stable value in the face of market fluctuations.
 
 Collateralization is a key aspect of the stability mechanism. In the case of cUSD, collateral is provided in the form of other digital assets. These assets are held in reserve and serve as a safeguard against potential fluctuations in the value of cUSD. In the event of market volatility, the collateral acts as a buffer, ensuring that the value of cUSD remains pegged to the designated fiat currency.
 
@@ -55,7 +78,7 @@ Moreover, cUSD opens up opportunities for individuals in regions with volatile o
 - Low Transaction Fees: The Celo network boasts low transaction fees, making cUSD an attractive option for microtransactions and everyday purchases. Whether you're sending money to a friend or making a purchase, the cost-efficiency of cUSD makes it a practical choice.
 
 ## Building a Stablecoin on the Celo Blockchain
-For those interested in creating their own stablecoin on the Celo blockchain, understanding the process of writing a smart contract is crucial. Hardhat and Solidity are powerful tools that facilitate the development of smart contracts and their deployment on the Celo blockchain.
+For those interested in creating their stablecoin on the Celo blockchain, understanding the process of writing a smart contract is crucial. Hardhat and Solidity are powerful tools that facilitate the development of smart contracts and their deployment on the Celo blockchain.
 <br/>
 
 To begin, you will need to set up your development environment with Hardhat. Hardhat is a popular development framework that simplifies the process of writing, testing, and deploying smart contracts. It provides a comprehensive suite of tools and utilities that aid in the smooth development process.
@@ -76,25 +99,33 @@ You will need to build a smart contract utilizing the well-known development fra
 ### Setting Up Your Development Environment 
 Start by installing Hardhat, a powerful tool for Ethereum and Celo development. Once installed, create a new directory for your project and initialize it with Hardhat.
 
-1. Install Hardhat globally
+1. Install Hardhat globally:
 
-``npm install -g hardhat``
+    ```bash
+    npm install --save-dev hardhat
+    ```
 
 
-2. Create a new directory for your project
+2. Create a new directory for your project:
 
-```mkdir my-stablecoin-project```
+    ```bash
+    mkdir my-stablecoin-project
+    ```
+3. Change directory to the project's folder:
+    ```bash
+    cd my-stablecoin-project
+    ```
 
-```cd my-stablecoin-project```
+4. Initialize the project with Hardhat:
 
-3. Initialize the project with Hardhat
+    ```bash
+    npx hardhat init
+    ```
 
-```npx hardhat init```
-
-The above code snippet assumes you have Node.js and npm (Node Package Manager) installed on your machine. By following these steps, you will have Hardhat installed globally and a new directory created for your stablecoin project. The **```npx hardhat init```** command initializes the project with the necessary configuration files and folder structure provided by Hardhat, allowing you to start developing and deploying your smart contracts on the Celo blockchain.
+The above code snippet assumes you have Node.js and npm (Node Package Manager) installed on your machine. By following these steps, you will have Hardhat installed globally and a new directory created for your stablecoin project. The **`npx hardhat init`** command initializes the project with the necessary configuration files and folder structure provided by Hardhat, allowing you to start developing and deploying your smart contracts on the Celo blockchain.
 <br/>
 
-Please note that you may need to customize the project configuration and install additional dependencies based on your specific requirements. Make sure to refer to the Hardhat documentation for further guidance on configuring and extending your project.
+Please note that you may need to customize the project configuration and install additional dependencies based on your specific requirements. Make sure to refer to the [Hardhat documentation](https://hardhat.org/hardhat-runner/docs/config) for further guidance on configuring and extending your project.
 
 ### Defining the Stablecoin Contract
 Within your project directory, create a new Solidity file for your stablecoin contract. Define the necessary variables and functions to handle the token's supply, transfers, and stability mechanisms. Consider incorporating the Celo Stability Protocol into your contract design.
@@ -119,19 +150,63 @@ contract MyStablecoin is ERC20 {
         _;
     }
 
-    function mint(address recipient, uint256 amount) external onlyGovernance {
+    modifier checkAmount(uint256 amount){
+        require(amount > 0, "Invalid amount");
+        _;
+    }
+
+     /** @dev Creates `amount` tokens and assigns them to `recipient`, increasing
+     * the total supply.
+     *
+     * Requirements:
+     *
+     * - `recipient` cannot be the zero address.
+     * - `amount` cannot be zero.
+     */
+    function mint(address recipient, uint256 amount) external onlyGovernance checkAmount(amount) {    
         _mint(recipient, amount);
     }
 
-    function burn(uint256 amount) external {
+    /**
+     * @dev Destroys `amount` tokens from `msg.sender`, reducing the
+     * total supply.
+     *
+     * Requirements:
+     *
+     * - `msg.sender` cannot be the zero address.
+     * - `msg.sender` must have at least `amount` tokens.
+     * - `amount` cannot be zero.
+     */
+    function burn(uint256 amount) external checkAmount(amount) {
         _burn(msg.sender, amount);
     }
 
+    /**
+     * @dev Moves `amount` of tokens from `msg.sender` to `recipient`.
+     *
+     * Requirements:
+     *
+     * - `msg.sender` cannot be the zero address.
+     * - `recipient` cannot be the zero address.
+     * - `msg.sender` must have a balance of at least `amount`.
+     */
     function transfer(address recipient, uint256 amount) public override returns (bool) {
         require(amount <= _calculateStability(amount), "Transfer amount exceeds stability limit");
         return super.transfer(recipient, amount);
     }
 
+
+    /**
+     * @dev  Moves `amount` of tokens from `sender` to `recipient`
+     *
+     * Requirements:
+     *
+     * - `sender` and `to` cannot be the zero address.
+     * - `sender` must have a balance of at least `amount`.
+     * - the caller must have allowance for ``sender``'s tokens of at least
+     * `amount`.
+     * - `amount` needs to be lower than the required fractional reserve the smart contract has to maintain
+     */
     function transferFrom(
         address sender,
         address recipient,
@@ -141,6 +216,9 @@ contract MyStablecoin is ERC20 {
         return super.transferFrom(sender, recipient, amount);
     }
 
+    /**
+     * @dev  Returns the maximum allowed amount to trade
+     */
     function _calculateStability(uint256 amount) private view returns (uint256) {
         uint256 totalSupply = totalSupply();
         uint256 reserve = (totalSupply * reserveRatio) / 10000; // adjust to decimal percentage
@@ -180,7 +258,7 @@ contract MyStablecoin is ERC20 {
 
     constructor(address _priceFeedAddress) ERC20("My Stablecoin", "MYS") {
         governance = msg.sender;
-        reserveRatio = 0.2; // Example reserve ratio, adjust as needed
+        reserveRatio = 2000; // Example reserve ratio, adjust as needed. Currently represents 2000(20%) basis points
         priceFeed = AggregatorV3Interface(_priceFeedAddress);
     }
 
@@ -189,19 +267,64 @@ contract MyStablecoin is ERC20 {
         _;
     }
 
-    function mint(address recipient, uint256 amount) external onlyGovernance {
+    modifier checkAmount(uint256 amount){
+        require(amount > 0, "Invalid amount");
+        _;
+    }
+
+
+     /** @dev Creates `amount` tokens and assigns them to `recipient`, increasing
+     * the total supply.
+     *
+     * Requirements:
+     *
+     * - `recipient` cannot be the zero address.
+     * - `amount` cannot be zero.
+     */
+    function mint(address recipient, uint256 amount) external onlyGovernance checkAmount(amount) {    
         _mint(recipient, amount);
     }
 
-    function burn(uint256 amount) external {
+    /**
+     * @dev Destroys `amount` tokens from `msg.sender`, reducing the
+     * total supply.
+     *
+     * Requirements:
+     *
+     * - `msg.sender` cannot be the zero address.
+     * - `msg.sender` must have at least `amount` tokens.
+     * - `amount` cannot be zero.
+     */
+    function burn(uint256 amount) external checkAmount(amount) {
         _burn(msg.sender, amount);
     }
 
+    /**
+     * @dev Moves `amount` of tokens from `msg.sender` to `recipient`.
+     *
+     * Requirements:
+     *
+     * - `msg.sender` cannot be the zero address.
+     * - `recipient` cannot be the zero address.
+     * - `msg.sender` must have a balance of at least `amount`.
+     */
     function transfer(address recipient, uint256 amount) public override returns (bool) {
         require(amount <= _calculateStability(amount), "Transfer amount exceeds stability limit");
         return super.transfer(recipient, amount);
     }
 
+
+    /**
+     * @dev  Moves `amount` of tokens from `sender` to `recipient`
+     *
+     * Requirements:
+     *
+     * - `sender` and `to` cannot be the zero address.
+     * - `sender` must have a balance of at least `amount`.
+     * - the caller must have allowance for ``sender``'s tokens of at least
+     * `amount`.
+     * - `amount` needs to be lower than the required fractional reserve the smart contract has to maintain
+     */
     function transferFrom(
         address sender,
         address recipient,
@@ -211,26 +334,49 @@ contract MyStablecoin is ERC20 {
         return super.transferFrom(sender, recipient, amount);
     }
 
+    /**
+     * @dev  Returns the maximum allowed amount to trade
+     */
     function _calculateStability(uint256 amount) private view returns (uint256) {
         uint256 totalSupply = totalSupply();
-        uint256 reserve = totalSupply * reserveRatio;
+        uint256 reserve = (totalSupply * reserveRatio) / 10000; // adjust to decimal percentage
         return totalSupply - reserve - amount;
     }
 
+    /**
+     * @dev  Updates the address of the `updatePriceFeedAddress` to `_priceFeedAddress`
+     *
+     * Requirements:
+     *
+     * - `_priceFeedAddress` cannot be the zero address.
+     * - `sender` must be the `governance`.
+     */
     function updatePriceFeedAddress(address _priceFeedAddress) external onlyGovernance {
+        require(_priceFeedAddress != address(0), "Invalid price feed address");
         priceFeed = AggregatorV3Interface(_priceFeedAddress);
     }
 
+    /**
+     * @dev  Returns the latest price of MYS tokens
+     *
+     */
     function getLatestPrice() public view returns (uint256) {
         (, int256 price, , , ) = priceFeed.latestRoundData();
         require(price > 0, "Invalid price"); // Ensure the price is positive
         return uint256(price);
     }
 
+    /**
+     * @dev  Updates the address of the `updatePriceFeedAddress` to `_priceFeedAddress`
+     *
+     * Requirements:
+     *
+     * - `sender` must be the `governance`.
+     */
     function adjustSupply() external onlyGovernance {
         uint256 currentPrice = getLatestPrice();
         uint256 totalSupply = totalSupply();
-        uint256 reserve = totalSupply * reserveRatio;
+        uint256 reserve = (totalSupply * reserveRatio) / 10000;
         uint256 targetSupply = reserve / currentPrice;
         if (totalSupply > targetSupply) {
             uint256 amountToBurn = totalSupply - targetSupply;
@@ -255,13 +401,50 @@ In the above code snippet, we have made several updates to the previous stableco
 
 - The **`adjustSupply`*** function is called by the governance address to adjust the stablecoin's supply based on the target reserve ratio. It fetches the current price from the Oracle system, calculates the target supply based on the reserve and the current price, and adjusts the supply accordingly. If the total supply is greater than the target supply, it burns the excess tokens. If the total supply is less than the target supply, it mints additional tokens.
 
-Please note that the code assumes the availability of the AggregatorV3
+>**_Note_**: You can find the code for the AggregatorV3Interface by going to https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol
 
 ### Testing Your Contract
 To ensure the security and operation of your smart contract, it is essential to run a thorough test of it. You can create thorough test cases to verify your stablecoin's functionality in various scenarios using the strong testing framework offered by Hardhat.
 
 ### Deploying to the Celo Blockchain
 Once your contract passes all tests, it's time to deploy it to the Celo blockchain. Hardhat provides deployment scripts that make it straightforward to deploy your contract to the Celo network. Ensure you have the necessary Celo account and network configurations in place.
+
+To deploy to the Celo Alfajores testnet, you'll need to configure your `hardhat.config.js` as follows:
+
+```js
+
+require("@nomiclabs/hardhat-waffle");
+
+// Export the Hardhat configuration object
+module.exports = {
+  // Specify the networks to be used
+  networks: {
+    // Local development network
+    hardhat: {},
+    // Celo Alfajores testnet
+    alfajores: {
+      url: "https://alfajores-forno.celo-testnet.org",
+      // Replace <your-private-key> with your own private key
+      accounts: ["<your-private-key>"],
+      chainId: 44787,
+    }
+  },
+  // Specify the version of Solidity to be used
+  solidity: {
+    version: "0.8.0",
+    // Specify settings for the Solidity compiler
+    settings: {
+      // Enable the optimizer
+      optimizer: {
+        enabled: true,
+        // Specify the number of optimization runs
+        runs: 200
+      }
+    }
+  }
+};
+
+```
 
 Here is an example of code that shows how to use Hardhat's deployment tools to publish your stablecoin contract to the Celo blockchain:
 
@@ -300,7 +483,7 @@ The JavaScript deployment script in the code snippet above makes use of Hardhat 
 
 - First, we set up the necessary configurations and obtain the deployer's Celo account using **`ethers.getSigners()`**.
 
-- Next, we define the parameters for the stablecoin contract deployment, including the name, symbol, and the address of the Oracle price feed.
+- Next, we define the parameters for the stablecoin contract deployment, including the name, symbol, and address of the Oracle price feed.
 
 - We then use **`ethers.getContractFactory()`** to obtain the contract factory for the stablecoin contract.
 
